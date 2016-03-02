@@ -8,45 +8,94 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight
 } from 'react-native';
 
-class CousinGiftExchange extends Component {
-  render() {
+import Start from './CousinGiftExchange/Start'
+
+var CousinGiftExchange = React.createClass({  
+  getInitialState: function() {
+    return {
+      loginView: false,
+      createAccountView: false
+    }
+  },
+
+  toggleLoginView: function() {
+    console.log("switch login");
+    this.setState({loginView: !this.state.loginView});
+  },
+
+  toggleCreateAccountView: function() {
+    console.log("switch account");
+    this.setState({createAccountView: !this.state.createAccountView});
+  },
+
+  render: function() {
+    if (this.state.loginView) {
+      return (
+        <View style={styles.container} >
+          <Text>
+            Login to the account here.
+          </Text>
+          <TouchableHighlight 
+            style={styles.button}
+            onPress={this.toggleLoginView} >
+            <Text style={styles.buttonText}>
+              Go Back
+            </Text>
+          </TouchableHighlight>
+        </View>
+      )
+    }
+    if (this.state.createAccountView) {
+      return (
+        <View style={styles.container} >
+          <Text>
+            Create Account Here
+          </Text>
+          <TouchableHighlight 
+            style={styles.button}
+            onPress={this.toggleCreateAccountView} >
+            <Text style={styles.buttonText}>
+              Go Back
+            </Text>
+          </TouchableHighlight>
+        </View>
+      )
+    }
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native Custom 3!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Start toggleLoginView={this.toggleLoginView} toggleCreateAccountView={this.toggleCreateAccountView} />
     );
   }
-}
+});
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    paddingTop: 40,
+    padding: 10,
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: 'center',
+    backgroundColor: '#F5FCFF'
   },
   welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    marginTop: -100,
+    fontSize: 20
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  button: {
+    marginTop: 30,
+    backgroundColor: "#48BBEC",
+    height: 50,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
   },
+  buttonText: {
+    fontSize: 16,
+    color: '#FFF',
+    alignSelf: 'center'
+  }
 });
 
 AppRegistry.registerComponent('CousinGiftExchange', () => CousinGiftExchange);
