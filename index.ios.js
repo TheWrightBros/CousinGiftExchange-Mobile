@@ -13,6 +13,7 @@ import React, {
 } from 'react-native';
 
 import Start from './CousinGiftExchange/Start'
+import Welcome from './CousinGiftExchange/Welcome'
 
 var CousinGiftExchange = React.createClass({  
   getInitialState: function() {
@@ -66,7 +67,7 @@ var CousinGiftExchange = React.createClass({
       )
     }
     return (
-      <Start toggleLoginView={this.toggleLoginView} toggleCreateAccountView={this.toggleCreateAccountView} />
+      <Welcome toggleLoginView={this.toggleLoginView} toggleCreateAccountView={this.toggleCreateAccountView} />
     );
   }
 });
